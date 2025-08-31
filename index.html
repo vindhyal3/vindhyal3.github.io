@@ -80,8 +80,10 @@
     .divider { height: 1px; background: linear-gradient(90deg, transparent, rgba(255,255,255,.2), transparent); margin: 26px 0; }
     footer { margin-top: 40px; text-align: center; color: var(--muted); font-size: 14px; }
     .cert-list { list-style: none; padding: 0; margin: 0; }
-    .cert-list li { display: flex; align-items: center; gap: 10px; margin: 8px 0; }
-    .cert-list img { height: 28px; width: auto; }
+    .cert-list li { display: flex; align-items: center; gap: 10px; margin: 10px 0; }
+    .cert-list img { height: 28px; width: auto; border-radius: 4px; background: #fff; padding: 2px; }
+    .cert-list a { color: var(--text); text-decoration: none; }
+    .cert-list a:hover { text-decoration: underline; color: var(--accent); }
   </style>
 </head>
 <body>
@@ -95,7 +97,7 @@
         <span class="pill"><a href="mailto:3vindhyal@gmail.com">Email</a></span>
         <span class="pill"><a href="tel:+919039238419">Call</a></span>
         <span class="pill"><a href="https://linkedin.com/in/vindhyal" target="_blank">LinkedIn</a></span>
-        <span class="pill"><a href="resume.pdf" download>Download Resume</a></span>
+        <span class="pill"><a href="resume.pdf" download>Download Résumé</a></span>
       </div>
     </header>
 
@@ -166,17 +168,17 @@
       <h2>Certifications</h2>
       <ul class="cert-list">
         <li>
-          <img src="https://cdn.worldvectorlogo.com/logos/databricks-1.svg" alt="Databricks Logo">
+          <img src="DBX_Logo" alt="Databricks Logo">
           <a href="https://credentials.databricks.com/ed40217b-8e75-45b9-8b9c-5b918269a19b#acc.eI80PWnV" target="_blank">Certified Data Engineer Associate</a>
         </li>
         <li>
-          <img src="https://cdn.worldvectorlogo.com/logos/snowflake-2.svg" alt="Snowflake Logo">
+          <img src="SF_LOGO" alt="Snowflake Logo">
           <a href="https://achieve.snowflake.com/0ae5734f-e8d9-4e3c-928c-722b0e9563ad#acc.n4taz5jw" target="_blank">Data Warehousing (Badge)</a>
         </li>
       </ul>
     </section>
 
-    
+    <footer>© 2025 Vindhyal Nagori. Built with ❤️ on GitHub Pages.</footer>
   </div>
 </body>
 </html>
