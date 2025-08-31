@@ -7,104 +7,86 @@
   <meta name="description" content="Data Engineer skilled in Snowflake, Databricks, Spark, Airflow, Python, SQL." />
   <style>
     :root {
-      --bg: #0b1220;
-      --card: #121a2b;
-      --muted: #a9b1c7;
-      --text: #e7ecf6;
+      --bg1: #0f2027;
+      --bg2: #203a43;
+      --bg3: #2c5364;
+      --card: #ffffff10;
+      --muted: #cfd8dc;
+      --text: #f5f7fa;
       --accent: #64b6f7;
-      --chip: #182236;
-      --shadow: 0 8px 24px rgba(0,0,0,.35);
+      --chip: #ffffff15;
+      --shadow: 0 6px 20px rgba(0,0,0,.3);
     }
     * { box-sizing: border-box; }
-    html, body { height: 100%; scroll-behavior: smooth; }
+    html, body { margin: 0; height: 100%; scroll-behavior: smooth; }
     body {
-      margin: 0; 
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Inter, "Helvetica Neue", Arial;
-      background: linear-gradient(180deg, #0b1220 0%, #0e1526 60%, #0b1220 100%);
+      font-family: "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      background: linear-gradient(135deg, var(--bg1), var(--bg2), var(--bg3));
       color: var(--text);
     }
-    .wrap { max-width: 980px; margin: 0 auto; padding: 32px 20px 80px; }
-    
-    /* Hero Section */
-    header.hero {
-      display: grid; gap: 8px; align-items: start; margin: 12px 0 28px;
-    }
-    .name { font-size: clamp(28px, 5vw, 40px); margin: 0; font-weight: 700; }
-    .role { font-size: 20px; color: var(--muted); margin: 4px 0 0; }
-    .location { font-size: 16px; color: var(--muted); margin: 0; }
-    .row { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; margin-top: 12px; }
+    .wrap { max-width: 980px; margin: 0 auto; padding: 24px 16px 60px; }
+
+    /* Hero */
+    header.hero { display: grid; gap: 6px; margin: 12px 0 28px; }
+    .name { font-size: clamp(28px, 6vw, 40px); margin: 0; font-weight: 700; }
+    .role { font-size: clamp(18px, 4vw, 20px); color: var(--accent); margin: 2px 0 0; }
+    .location { font-size: clamp(15px, 3.5vw, 16px); color: var(--muted); margin: 0; }
+    .row { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 12px; }
     .pill a {
-      appearance: none; border: 1px solid rgba(255,255,255,.12); 
       background: var(--chip); color: var(--text);
-      padding: 10px 14px; border-radius: 999px; text-decoration: none; 
-      font-weight: 600; box-shadow: var(--shadow);
-      transition: all .25s ease;
+      padding: 8px 14px; border-radius: 999px; text-decoration: none;
+      font-weight: 600; font-size: 14px;
+      border: 1px solid rgba(255,255,255,.15);
+      transition: all .25s ease; box-shadow: var(--shadow);
     }
-    .pill a:hover { 
-      transform: translateY(-3px) scale(1.03); 
-      border-color: var(--accent); 
-      background: rgba(100,182,247,0.1);
-    }
-    
-    /* Section + Headings */
-    section { margin: 32px 0; }
-    h2 { font-size: 22px; margin: 10px 0 18px; border-left: 4px solid var(--accent); padding-left: 10px; }
-    
+    .pill a:hover { transform: translateY(-3px); border-color: var(--accent); background: var(--accent); color: #fff; }
+
+    /* Sections */
+    section { margin: 28px 0; }
+    h2 { font-size: 22px; margin: 10px 0 16px; border-left: 4px solid var(--accent); padding-left: 10px; }
+
     /* Grid + Cards */
-    .grid { display: grid; gap: 16px; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); }
-    .card { 
-      background: var(--card); border: 1px solid rgba(255,255,255,.08); 
-      border-radius: 16px; padding: 18px; box-shadow: var(--shadow); 
+    .grid { display: grid; gap: 16px; grid-template-columns: 1fr; }
+    @media(min-width: 700px) {
+      .grid { grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); }
+    }
+    .card {
+      background: var(--card); border-radius: 14px; padding: 18px; 
+      box-shadow: var(--shadow); backdrop-filter: blur(6px);
       transition: transform .25s ease, box-shadow .25s ease;
     }
-    .card:hover { 
-      transform: translateY(-6px); 
-      box-shadow: 0 12px 32px rgba(0,0,0,.45);
-    }
+    .card:hover { transform: translateY(-6px); box-shadow: 0 12px 28px rgba(0,0,0,.4); }
 
-    /* Skills Pills */
-    ul.skills { display: flex; flex-wrap: wrap; gap: 10px; list-style: none; padding: 0; margin: 0; }
-    ul.skills li { 
-      background: var(--chip); border: 1px solid rgba(255,255,255,.08); 
-      border-radius: 999px; padding: 8px 12px; transition: all .25s ease;
+    /* Skills */
+    ul.skills { display: flex; flex-wrap: wrap; gap: 8px; list-style: none; padding: 0; margin: 0; }
+    ul.skills li {
+      background: var(--chip); border: 1px solid rgba(255,255,255,.08);
+      border-radius: 999px; padding: 6px 12px; font-size: 14px;
+      transition: all .25s ease;
     }
-    ul.skills li:hover { background: var(--accent); color: #fff; cursor: default; }
-    
-    /* Text & Lists */
-    .period { color: var(--muted); font-size: 14px; margin-left: auto; }
-    header > h3 { margin: 0; font-size: 18px; }
-    header { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; }
-    .project h4 { margin: 8px 0 2px; font-size: 16px; }
+    ul.skills li:hover { background: var(--accent); color: #fff; }
+
+    /* Experience & Education */
+    header.exp-header { display: flex; flex-direction: column; gap: 2px; }
+    header.exp-header h3 { margin: 0; font-size: 18px; }
+    header.exp-header .period { color: var(--muted); font-size: 14px; text-align: right; }
+
+    .project h4 { margin: 8px 0 2px; font-size: 16px; color: var(--accent); }
     .project .stack { color: var(--muted); margin: 0 0 6px; }
     .bullets { margin: 6px 0 8px 20px; }
-    .bullets li { margin: 6px 0; line-height: 1.4; }
-    
+    .bullets li { margin: 6px 0; line-height: 1.5; }
+
     /* Divider + Footer */
-    .divider { height: 1px; background: linear-gradient(90deg, transparent, rgba(255,255,255,.15), transparent); margin: 26px 0; }
+    .divider { height: 1px; background: linear-gradient(90deg, transparent, rgba(255,255,255,.2), transparent); margin: 26px 0; }
     footer { margin-top: 40px; text-align: center; color: var(--muted); font-size: 14px; }
+    .cert-list { list-style: none; padding: 0; margin: 0; }
+    .cert-list li { display: flex; align-items: center; gap: 10px; margin: 8px 0; }
+    .cert-list img { height: 28px; width: auto; }
   </style>
-  <script type="application/ld+json">
-  {
-  "@context": "https://schema.org",
-  "@type": "Person",
-  "name": "Vindhyal Nagori",
-  "jobTitle": "Data Engineer",
-  "email": "mailto:3vindhyal@gmail.com",
-  "telephone": "+919039238419",
-  "address": {
-    "@type": "PostalAddress",
-    "addressLocality": "Pune",
-    "addressCountry": "IN"
-  },
-  "sameAs": [
-    "https://linkedin.com/in/vindhyal"
-  ]
-}
-  </script>
 </head>
 <body>
   <div class="wrap">
-    <!-- Hero Section -->
+    <!-- Hero -->
     <header class="hero">
       <h1 class="name">Vindhyal Nagori</h1>
       <p class="role">Data Engineer</p>
@@ -112,8 +94,8 @@
       <div class="row">
         <span class="pill"><a href="mailto:3vindhyal@gmail.com">Email</a></span>
         <span class="pill"><a href="tel:+919039238419">Call</a></span>
-        <span class="pill"><a href="https://linkedin.com/in/vindhyal" target="_blank" rel="noreferrer">LinkedIn</a></span>
-        <span class="pill"><a href="resume.pdf" download>Download Résumé</a></span>
+        <span class="pill"><a href="https://linkedin.com/in/vindhyal" target="_blank">LinkedIn</a></span>
+        <span class="pill"><a href="resume.pdf" download>Download Resume</a></span>
       </div>
     </header>
 
@@ -144,7 +126,7 @@
       <h2>Experience</h2>
       <div class="grid">
         <article class="card">
-          <header>
+          <header class="exp-header">
             <h3>Software Developer · Amdocs India</h3>
             <span class="period">July 2023 — Present</span>
           </header>
@@ -174,27 +156,27 @@
     <section>
       <h2>Education</h2>
       <ul class="bullets">
-        <li>
-          <strong>MCA — Master of Computer Applications</strong> — NIT Kurukshetra, Haryana 
-          <span class="period">July 2020 — June 2023</span>
-        </li>
-        <li>
-          <strong>B.Sc.</strong> — College of Professional Studies, Indore 
-          <span class="period">July 2017 — June 2020</span>
-        </li>
+        <li><strong>MCA — Master of Computer Applications</strong> — NIT Kurukshetra, Haryana <span class="period">July 2020 — June 2023</span></li>
+        <li><strong>B.Sc.</strong> — College of Professional Studies, Indore <span class="period">July 2017 — June 2020</span></li>
       </ul>
     </section>
 
     <!-- Certifications -->
     <section>
       <h2>Certifications</h2>
-      <ul class="bullets">
-        <li><a href="https://credentials.databricks.com/ed40217b-8e75-45b9-8b9c-5b918269a19b#acc.eI80PWnV" target="_blank" rel="noreferrer">Databricks Certified Data Engineer Associate</a></li>
-        <li><a href="https://achieve.snowflake.com/0ae5734f-e8d9-4e3c-928c-722b0e9563ad#acc.n4taz5jw" target="_blank" rel="noreferrer">Snowflake — Data Warehousing (badge)</a></li>
+      <ul class="cert-list">
+        <li>
+          <img src="https://cdn.worldvectorlogo.com/logos/databricks-1.svg" alt="Databricks Logo">
+          <a href="https://credentials.databricks.com/ed40217b-8e75-45b9-8b9c-5b918269a19b#acc.eI80PWnV" target="_blank">Certified Data Engineer Associate</a>
+        </li>
+        <li>
+          <img src="https://cdn.worldvectorlogo.com/logos/snowflake-2.svg" alt="Snowflake Logo">
+          <a href="https://achieve.snowflake.com/0ae5734f-e8d9-4e3c-928c-722b0e9563ad#acc.n4taz5jw" target="_blank">Data Warehousing (Badge)</a>
+        </li>
       </ul>
     </section>
 
-  
+    
   </div>
 </body>
 </html>
