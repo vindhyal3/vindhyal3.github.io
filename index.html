@@ -188,7 +188,7 @@
       background: #0b0f14;
     }
 
-    /* ✅ Make Certifications & Contact text white */
+    /* ✅ Certifications & Contact text white */
     #certifications li, 
     #certifications li a {
       color: #fff;
@@ -196,6 +196,25 @@
     #contact p, 
     #contact p a {
       color: #fff;
+    }
+
+    /* ✅ Badge Styles */
+    .cert-badges {
+      display: flex;
+      gap: 20px;
+      justify-content: center;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+    .cert-badges .badge {
+      width: 150px;
+      border-radius: 10px;
+      transition: transform 0.3s, box-shadow 0.3s;
+      cursor: pointer;
+    }
+    .cert-badges .badge:hover {
+      transform: scale(1.08);
+      box-shadow: 0 6px 20px rgba(0, 196, 255, 0.5);
     }
   </style>
 </head>
@@ -239,7 +258,7 @@
       <div class="skill-bar"><div class="skill-title">Python & SQL</div><div class="bar"><span data-skill="90"></span></div></div>
       <div class="skill-bar"><div class="skill-title">ETL Pipeline</div><div class="bar"><span data-skill="95"></span></div></div>
       <div class="skill-bar"><div class="skill-title">Data Migration And Integration</div><div class="bar"><span data-skill="85"></span></div></div>
-      <div class="skill-bar"><div class="skill-title">Big Data Processing</div><div class="bar"><span data-skill="75"></span></div></div>
+      <div class="skill-bar"><div class="skill-title">Big Data Processing</div><div class="bar"><span data-skill="80"></span></div></div>
     </div>
   </section>
 
@@ -299,10 +318,14 @@
   <section id="certifications">
     <h2>Certifications</h2>
     <div class="card">
-      <ul>
-        <li><a href="https://achieve.snowflake.com/859ceab0-4db1-4f68-bdba-a6159fe69313#acc.jT6PSiks" target="_blank">Snowflake: SnowPro Core</a></li>
-        <li><a href="https://credentials.databricks.com/ed40217b-8e75-45b9-8b9c-5b918269a19b#acc.eI80PWnV" target="_blank">Databricks: Associate Data Engineer</a></li>
-      </ul>
+      <div class="cert-badges">
+        <a href="https://credentials.databricks.com/ed40217b-8e75-45b9-8b9c-5b918269a19b#acc.eI80PWnV" target="_blank">
+          <img src="dbximage.png" alt="Databricks Associate Data Engineer" class="badge">
+        </a>
+        <a href="https://achieve.snowflake.com/859ceab0-4db1-4f68-bdba-a6159fe69313#acc.jT6PSiks" target="_blank">
+          <img src="sfimage.png" alt="Snowflake SnowPro Core" class="badge">
+        </a>
+      </div>
     </div>
   </section>
 
