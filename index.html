@@ -3,79 +3,206 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Vindhyal Nagori - Portfolio</title>
+  <title>Vindhyal Nagori — Data Engineer</title>
   <style>
+    :root {
+      --bg: #0d1117;
+      --card: #161b22;
+      --accent: #00c4ff;
+      --accent2: #fbbf24;
+      --text: #e6edf3;
+      --muted: #8b949e;
+    }
+    * {margin:0;padding:0;box-sizing:border-box;}
     body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background-color: #0d1117;
-      color: #c9d1d9;
+      font-family: "Segoe UI", Roboto, Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      scroll-behavior: smooth;
     }
     header {
-      background-color: #161b22;
-      padding: 20px;
-      text-align: center;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: space-around;
+      background: linear-gradient(135deg, #0d1117 40%, #1e293b 100%);
+      padding: 40px;
+      overflow: hidden;
+      position: relative;
     }
     header h1 {
-      margin: 0;
-      font-size: 2rem;
-      color: #58a6ff;
+      font-size: 3rem;
+      color: var(--accent);
+      animation: fadeInUp 1.5s ease;
     }
-    nav {
-      margin-top: 10px;
+    header p {
+      font-size: 1.2rem;
+      color: var(--muted);
+      animation: fadeInUp 2s ease;
     }
-    nav a {
-      margin: 0 15px;
-      color: #c9d1d9;
+    header .btn {
+      margin-top: 20px;
+      padding: 12px 20px;
+      background: var(--accent2);
+      color: #000;
+      border-radius: 8px;
+      font-weight: bold;
       text-decoration: none;
-      transition: color 0.3s;
+      transition: 0.3s;
+      display: inline-block;
+      animation: fadeInUp 2.5s ease;
     }
-    nav a:hover {
-      color: #58a6ff;
+    header .btn:hover { background: var(--accent); color:#fff; }
+    .avatar {
+      width: 300px;
+      animation: float 3s ease-in-out infinite, fadeInRight 2s ease;
+      border-radius: 20px;
     }
+
+    @keyframes float {
+      0%,100% {transform:translateY(0);}
+      50% {transform:translateY(-20px);}
+    }
+    @keyframes fadeInUp {
+      0% {opacity:0;transform:translateY(40px);}
+      100% {opacity:1;transform:translateY(0);}
+    }
+    @keyframes fadeInRight {
+      0% {opacity:0;transform:translateX(60px);}
+      100% {opacity:1;transform:translateX(0);}
+    }
+
     section {
-      padding: 40px 20px;
-      max-width: 900px;
-      margin: auto;
+      padding: 80px 10%;
+      position: relative;
     }
     section h2 {
-      color: #58a6ff;
-      border-bottom: 2px solid #30363d;
-      padding-bottom: 10px;
-      margin-bottom: 20px;
+      font-size: 2rem;
+      margin-bottom: 30px;
+      color: var(--accent2);
+      border-bottom: 2px solid var(--accent2);
+      display: inline-block;
+      padding-bottom: 5px;
     }
     .card {
-      background-color: #161b22;
-      padding: 20px;
-      border-radius: 10px;
-      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+      background: var(--card);
+      padding: 25px;
+      border-radius: 12px;
+      margin-bottom: 20px;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.4);
+      transition: transform 0.3s;
+    }
+    .card:hover { transform: translateY(-6px); }
+
+    /* Skills */
+    .skill-bar {
+      margin: 15px 0;
+    }
+    .skill-title {
+      margin-bottom: 5px;
+      font-weight: bold;
+    }
+    .bar {
+      background: #22272e;
+      border-radius: 6px;
+      overflow: hidden;
+      height: 20px;
+    }
+    .bar span {
+      display: block;
+      height: 100%;
+      background: var(--accent);
+      width: 0;
+      transition: width 2s ease;
+    }
+
+    /* Experience Timeline */
+    .timeline {
+      border-left: 2px solid var(--accent);
+      padding-left: 20px;
+    }
+    .timeline div {
       margin-bottom: 20px;
     }
-    .btn {
-      display: inline-block;
-      padding: 10px 20px;
-      margin: 10px 10px 0 0;
-      background-color: #238636;
+    .timeline h3 { color: var(--accent); }
+
+    /* Projects Flip Cards */
+    .project-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+    }
+    .flip-card {
+      background-color: transparent;
+      perspective: 1000px;
+    }
+    .flip-card-inner {
+      position: relative;
+      width: 100%;
+      height: 200px;
+      transition: transform 0.6s;
+      transform-style: preserve-3d;
+    }
+    .flip-card:hover .flip-card-inner {
+      transform: rotateY(180deg);
+    }
+    .flip-card-front, .flip-card-back {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      backface-visibility: hidden;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 15px;
+    }
+    .flip-card-front {
+      background: var(--card);
+      color: var(--text);
+    }
+    .flip-card-back {
+      background: var(--accent2);
+      color: #000;
+      transform: rotateY(180deg);
+    }
+
+    /* Counters */
+    .counters {
+      display: flex;
+      justify-content: space-around;
+      text-align: center;
+      margin-top: 30px;
+    }
+    .counter {
+      font-size: 2rem;
+      color: var(--accent);
+    }
+
+    footer {
+      text-align: center;
+      padding: 20px;
+      font-size: 14px;
+      color: var(--muted);
+      background: #0b0f14;
+    }
+
+    /* ✅ Certifications & Contact text white */
+    #certifications li, 
+    #certifications li a {
       color: #fff;
-      border-radius: 5px;
-      text-decoration: none;
-      transition: background-color 0.3s, transform 0.3s;
     }
-    .btn:hover {
-      background-color: #2ea043;
-      transform: scale(1.05);
+    #contact p, 
+    #contact p a {
+      color: #fff;
     }
-    .btn-linkedin {
-      background-color: #0077b5;
-    }
-    .btn-linkedin:hover {
-      background-color: #0091da;
-    }
-    /* Certifications */
+
+    /* ✅ Badge Styles */
     .cert-badges {
       display: flex;
       gap: 20px;
-      justify-content: flex-start;
+      justify-content: center;
       align-items: center;
       flex-wrap: wrap;
     }
@@ -89,28 +216,20 @@
       transform: scale(1.08);
       box-shadow: 0 6px 20px rgba(0, 196, 255, 0.5);
     }
-    /* White text overrides */
-    #certifications li,
-    #certifications li a {
-      color: #fff;
-    }
-    #contact p,
-    #contact p a {
-      color: #fff;
-    }
   </style>
 </head>
 <body>
-  <!-- Header -->
-  <header>
-    <h1>Vindhyal Nagori</h1>
-    <nav>
-      <a href="#about">About</a>
-      <a href="#experience">Experience</a>
-      <a href="#skills">Skills</a>
-      <a href="#certifications">Certifications</a>
-      <a href="#contact">Contact</a>
-    </nav>
+
+  <!-- Hero Section -->
+  <header id="home">
+    <div>
+      <h1>Hi, I'm <span style="color:var(--accent2)">Vindhyal Nagori</span></h1>
+      <p>Data Engineer | Passionate about Data, Cloud, and Innovation</p>
+      <a href="Vindhyal_N.pdf" class="btn" download>Download CV</a><br>
+<!--       <a href="https://www.linkedin.com/in/vindhyal/" class="btn" download>Download CV</a> -->
+    </div>
+    <img src="https://raw.githubusercontent.com/vindhyal3/vindhyal3.github.io/main/photo_for_profile.jpg" 
+         alt="3D Avatar Placeholder" class="avatar">
   </header>
 
   <!-- About -->
@@ -118,21 +237,14 @@
     <h2>About Me</h2>
     <div class="card">
       <p>
-        I am a Software Developer – Data Engineering at Amdocs with expertise in Snowflake, SQL, Java, Linux, and Data Pipelines.
-        I build scalable ETL pipelines, work on cloud-based data platforms, and enjoy solving complex data challenges.
+        I am a Data Engineer passionate about building scalable, efficient, and automated data systems. At <strong>Amdocs</strong> India, I focus on data migration, orchestration, and performance optimization, enabling business-critical insights across large datasets. 
+        With an MCA from <strong>NIT Kurukshetra</strong>, I bring expertise in ETL pipelines, cloud data platforms, and workflow automation to deliver data solutions that drive impact.
       </p>
-      <a href="CV.pdf" class="btn" target="_blank">Download CV</a>
-      <a href="https://www.linkedin.com/in/vindhyal/" class="btn btn-linkedin" target="_blank">LinkedIn</a>
     </div>
-  </section>
-
-  <!-- Experience -->
-  <section id="experience">
-    <h2>Experience</h2>
-    <div class="card">
-      <h3>Amdocs</h3>
-      <p><strong>Software Developer – Data Engineering</strong></p>
-      <p>Worked on large-scale data migration and transformation projects for Globe Telecom and AT&T, leveraging Snowflake and Spring Pipelines.</p>
+    <div class="counters">
+      <div><div class="counter" data-target="3">0</div><p>Years Experience</p></div>
+      <div><div class="counter" data-target="4">0</div><p>Major Projects</p></div>
+      <div><div class="counter" data-target="60">0</div><p>% Efficiency Gains</p></div>
     </div>
   </section>
 
@@ -140,20 +252,81 @@
   <section id="skills">
     <h2>Skills</h2>
     <div class="card">
-      <p>Snowflake, SQL, Java, JSP, Linux, Spring Pipelines, Data Migration, ETL, Cloud Data Platforms</p>
+      <div class="skill-bar"><div class="skill-title">Snowflake</div><div class="bar"><span data-skill="90"></span></div></div>
+      <div class="skill-bar"><div class="skill-title">Databricks</div><div class="bar"><span data-skill="85"></span></div></div>
+      <div class="skill-bar"><div class="skill-title">Spark</div><div class="bar"><span data-skill="80"></span></div></div>
+      <div class="skill-bar"><div class="skill-title">Airflow</div><div class="bar"><span data-skill="85"></span></div></div>
+      <div class="skill-bar"><div class="skill-title">Python & SQL</div><div class="bar"><span data-skill="90"></span></div></div>
+      <div class="skill-bar"><div class="skill-title">ETL Pipeline</div><div class="bar"><span data-skill="95"></span></div></div>
+      <div class="skill-bar"><div class="skill-title">Data Migration And Integration</div><div class="bar"><span data-skill="85"></span></div></div>
+      <div class="skill-bar"><div class="skill-title">Big Data Processing</div><div class="bar"><span data-skill="75"></span></div></div>
+    </div>
+  </section>
+
+  <!-- Experience -->
+  <section id="experience">
+    <h2>Experience</h2>
+    <div class="card timeline">
+      <div>
+        <h3>Data Engineer, Amdocs (2023-Present)</h3>
+        <p> 
+          →Designed and implemented large-scale ETL pipelines to migrate data from Teradata to Snowflake, improving performance and reducing infrastructure costs.
+          <br>
+          →Built scalable pipelines in Databricks (SQL, Python, Spark) for batch and streaming processing with automated scheduling.
+          <br>
+          →Orchestrated end-to-end workflows using Apache Airflow, including dependencies, recovery, and monitoring.
+          <br>
+          →Automated SFTP transfers and migration workflows via Python/Shell, reducing manual effort and ensuring timely data availability.
+          <br>
+          →Optimized SQL queries, performed debugging, and implemented data validation for improved reliability and quality.
+        </p>
+      </div>
+      <div>
+        <h3>Key Achievements</h3>
+        <ul>
+          <li>Successfully migrated critical AT&T workloads to Snowflake, cutting processing time and costs.</li>
+          <li>Delivered 30–40% higher operational efficiency by automating repetitive migration and monitoring tasks</li>
+          <li>Improved data quality and system reliability through proactive validation and optimization.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Projects -->
+  <section id="projects">
+    <h2>Projects</h2>
+    <div class="project-grid">
+      <div class="flip-card"><div class="flip-card-inner">
+        <div class="flip-card-front"><h3>Snowflake Migration</h3></div>
+        <div class="flip-card-back"><p>Migrated AT&T workloads from Teradata to Snowflake with data integrity.</p></div>
+      </div></div>
+      <div class="flip-card"><div class="flip-card-inner">
+        <div class="flip-card-front"><h3>ETL Orchestration</h3></div>
+        <div class="flip-card-back"><p>Engineered Airflow workflows with dependencies and recovery.</p></div>
+      </div></div>
+      <div class="flip-card"><div class="flip-card-inner">
+        <div class="flip-card-front"><h3>Real-time Transfers</h3></div>
+        <div class="flip-card-back"><p>Automated secure SFTP/NDM transfers ensuring timely data availability.</p></div>
+      </div></div>
+      <div class="flip-card"><div class="flip-card-inner">
+        <div class="flip-card-front"><h3>EDS MS data Integration</h3></div>
+        <div class="flip-card-back"><p>Real-Time and Batch Data Processing on Databricks using PySpark.</p></div>
+      </div></div>
     </div>
   </section>
 
   <!-- Certifications -->
   <section id="certifications">
     <h2>Certifications</h2>
-    <div class="cert-badges">
-      <a href="https://credentials.databricks.com/ed40217b-8e75-45b9-8b9c-5b918269a19b#acc.eI80PWnV" target="_blank">
-        <img src="dbximage.jpeg" alt="Databricks Associate Data Engineer" class="badge">
-      </a>
-      <a href="https://achieve.snowflake.com/859ceab0-4db1-4f68-bdba-a6159fe69313#acc.jT6PSiks" target="_blank">
-        <img src="sfimage.jpeg" alt="Snowflake SnowPro Core" class="badge">
-      </a>
+    <div class="card">
+      <div class="cert-badges">
+        <a href="https://credentials.databricks.com/ed40217b-8e75-45b9-8b9c-5b918269a19b#acc.eI80PWnV" target="_blank">
+          <img src="dbximage.jpeg" alt="Databricks Associate Data Engineer" class="badge">
+        </a>
+        <a href="https://achieve.snowflake.com/859ceab0-4db1-4f68-bdba-a6159fe69313#acc.jT6PSiks" target="_blank">
+          <img src="sfimage.jpeg" alt="Snowflake SnowPro Core" class="badge">
+        </a>
+      </div>
     </div>
   </section>
 
@@ -161,9 +334,44 @@
   <section id="contact">
     <h2>Contact</h2>
     <div class="card">
-      <p>Email: <a href="mailto:vindhyalnagori2002@gmail.com">vindhyalnagori2002@gmail.com</a></p>
-      <p>Phone: +91-9116134687</p>
+      <p>Email: <a href="mailto:3vindhyal@gmail.com">3vindhyal@gmail.com</a></p>
+      <p>Phone: <a href="tel:+919039238419">+91 9039238419</a></p>
+      <p>LinkedIn: <a href="https://linkedin.com/in/vindhyal" target="_blank">linkedin.com/in/vindhyal</a></p>
     </div>
   </section>
+
+  <footer>
+    © 2025 Vindhyal Nagori · Making Data Work Smarter, Faster, and Better
+  </footer>
+
+  <script>
+    // Counter animation
+    const counters = document.querySelectorAll('.counter');
+    counters.forEach(counter => {
+      const update = () => {
+        const target = +counter.getAttribute('data-target');
+        const c = +counter.innerText;
+        const increment = target / 100;
+        if(c < target) {
+          counter.innerText = Math.ceil(c + increment);
+          setTimeout(update, 30);
+        } else {
+          counter.innerText = target;
+        }
+      };
+      update();
+    });
+
+    // Skill bar animation on scroll
+    const skillBars = document.querySelectorAll('.bar span');
+    window.addEventListener('scroll', () => {
+      skillBars.forEach(bar => {
+        const rect = bar.getBoundingClientRect();
+        if(rect.top < window.innerHeight - 50) {
+          bar.style.width = bar.getAttribute('data-skill') + "%";
+        }
+      });
+    });
+  </script>
 </body>
 </html>
